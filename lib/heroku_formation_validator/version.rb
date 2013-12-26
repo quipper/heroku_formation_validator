@@ -1,0 +1,3 @@
+module HerokuFormationValidator
+  VERSION = "0.0.1"
+end

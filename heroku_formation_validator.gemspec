@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'heroku/formation_validator/version'
+require 'heroku_formation_validator/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "heroku-formation_validator"
-  spec.version       = Heroku::FormationValidator::VERSION
+  spec.name          = "heroku_formation_validator"
+  spec.version       = HerokuFormationValidator::VERSION
   spec.authors       = ["Tomo Nakano"]
   spec.email         = ["tomo@quipper.com"]
   spec.summary       = %q{Heroku config/addons validator for multiple apps}
