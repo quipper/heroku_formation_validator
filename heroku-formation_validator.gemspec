@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Heroku::FormationValidator::VERSION
   spec.authors       = ["Tomo Nakano"]
   spec.email         = ["tomo@quipper.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Heroku config/addons validator for multiple apps}
+  spec.description   = %q{}
   spec.homepage      = ""
   spec.license       = "MIT"
 
@@ -18,6 +18,10 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "~> 1.5"
+#  spec.add_development_dependency "bundler", "~> 1.5"
+  spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake"
+
+  spec.add_dependency 'httparty'
+  spec.add_dependency 'activesupport'
 end
