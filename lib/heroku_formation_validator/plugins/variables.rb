@@ -12,7 +12,7 @@ module HerokuFormationValidator
             end
           elsif !config.has_key?(key)
             errors << "#{key} is not defined"
-          else config[key] != value
+          elsif config[key] != value
             errors << "#{key} doesn't match. expected \"#{value}\" but \"#{config[key]}\""
           end
         end
