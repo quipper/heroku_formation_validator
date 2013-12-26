@@ -1,23 +1,22 @@
 require "heroku_formation_validator/version"
+require "heroku_formation_validator/heroku_api"
 require "yaml"
 require "active_support/all"
-require "heroku_formation_validator/heroku_api"
 
 Dir[File.join(File.dirname(__FILE__), 'heroku_formation_validator', 'plugins', '*.rb')].each do |extension|
   require extension
 end
 
 module HerokuFormationValidator
-  def self.run(config_file, environment="test")
-    cnf = YAML::load(File.open(config_file))[environment]
-    common = cnf["common"]
-    heroku_api = HerokuApi.new
+  def self.run(config_file)
+    cnf = YAML::load(File.open(config_file))
+    heroku_api = HerokuApi.new(cnf["auth"]["email"], cnf["auth"]["token"])
     success = true
     cnf["groups"].each do |group, validations|
       apps = validations.delete("apps")
       apps.each do |app|
         errors = []
-        common.merge(validations).each do |plugin, values|
+        cnf["common"].merge(validations).each do |plugin, values|
           plugin = "HerokuFormationValidator::Plugins::#{plugin.to_s.camelize}".safe_constantize
           errors += plugin.run(heroku_api, app, values)
         end

@@ -4,9 +4,12 @@ module HerokuFormationValidator
   class HerokuApi
     include HTTParty
     base_uri 'https://api.heroku.com'
-    basic_auth ENV["HEROKU_EMAIL"], ENV["HEROKU_TOKEN"]
     headers({"Accept" => "application/vnd.heroku+json; version=3"})
     # debug_output $stderr
+
+    def initialize(email, token)
+      self.class.basic_auth email, token
+    end
 
     def apps
       self.class.get("/apps")

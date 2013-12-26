@@ -1,17 +1,20 @@
-production:
-  common:
-    addons:
-      - "newrelic:stark"
-      - "redistogo:mini"
-      - "scheduler:standard"
-      - "sendgrid:bronze"
-    variables:
-      MONGO_DATABASE: "ABC"
-    papertrail: true
+auth:
+  user: <heroku email address>
+  token: <heroku token>
 
-  groups:
-    api:
-      apps:
-        - <your app name on heroku>
-      variables:
-        - YOUR_VARIABLE: "ABC"
+common:
+  addons:
+    - "newrelic:stark"
+    - "redistogo:mini"
+    - "scheduler:standard"
+    - "sendgrid:bronze"
+  variables:
+    MONGO_DATABASE: "ABC"
+  papertrail: true
+
+groups:
+  api:
+    apps:
+      - <your app name on heroku>
+    variables:
+      - YOUR_VARIABLE: "ABC"

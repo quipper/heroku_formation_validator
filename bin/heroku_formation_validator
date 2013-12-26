@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require 'heroku_formation_validator'
+exit HerokuFormationValidator.run(ARGV[0]) ? 0 : 1
