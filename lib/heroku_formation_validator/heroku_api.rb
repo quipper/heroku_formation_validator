@@ -11,6 +11,10 @@ module HerokuFormationValidator
       self.class.basic_auth email, token
     end
 
+    def ping
+      apps.ok?
+    end
+
     def apps
       self.class.get("/apps")
     end
