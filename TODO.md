@@ -1,2 +1,3 @@
 - more secure auth
+- better error message formater
 - tests..
