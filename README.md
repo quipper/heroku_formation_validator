@@ -27,7 +27,13 @@ common:
 groups:
   api:
     apps:
-      - <your app name on heroku>
+      - <your-app-name-1>
+      - <your-app-name-2>
+    variables:
+    - YOUR_VARIABLE: "ABC"
+  cms:
+    apps:
+      - <your-app-name-3>
     variables:
     - YOUR_VARIABLE: "ABC"
 ```
@@ -40,6 +46,17 @@ $ heroku_formation_validator formation.yml
 
 - When no errors, you will get nothing with exit code 0
 - When errors, You will get errors with exit code 1
+
+```
+=== api <your-app-name1> ===
+Addons: "scheduler:standard" is not installed
+=== api <your-app-name2> ===
+Addons: "scheduler:standard" is not installed
+Papertrail: not set in logdrains
+=== cms <your-app-name3>  ===
+Addons: "sendgrid:bronze" is not installed
+Addons: "redistogo:small" is not installed
+```
 
 ## Contributing
 
