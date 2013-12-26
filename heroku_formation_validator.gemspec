@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Tomo Nakano"]
   spec.email         = ["tomo@quipper.com"]
   spec.summary       = %q{Heroku config/addons validator for multiple apps}
-  spec.description   = %q{}
-  spec.homepage      = ""
+  spec.description   = %q{Heroku config/addons validator for multiple apps. It checks addons / config varibales etc}
+  spec.homepage      = "https://github.com/quipper/heroku_formation_validator"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
@@ -18,10 +18,9 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-#  spec.add_development_dependency "bundler", "~> 1.5"
-  spec.add_development_dependency "bundler"
-  spec.add_development_dependency "rake"
+  spec.add_development_dependency "bundler", "~> 1.5"
+  spec.add_development_dependency "rake", "~> 10.1"
 
-  spec.add_dependency 'httparty'
-  spec.add_dependency 'activesupport'
+  spec.add_dependency 'httparty', "~> 0.12"
+  spec.add_dependency 'activesupport', "~> 4"
 end
