@@ -29,13 +29,13 @@ module HerokuFormationValidator
       apps.each do |app|
         errors = []
         cnf["common"].merge(validations).each do |plugin, values|
-          plugin = "HerokuFormationValidator::Plugins::#{plugin.to_s.camelize}".safe_constantize
-          errors += plugin.run(heroku_api, app, values)
+          plugin_klass = "HerokuFormationValidator::Plugins::#{plugin.camelize}".safe_constantize
+          errors += plugin_klass.run(heroku_api, app, values).map{|error| "#{plugin.camelize}: #{error}"}
         end
 
         if errors.length > 0
           success = false
-          $stderr.puts "=== #{group} #{app}"
+          $stderr.puts "=== #{group} #{app} ==="
           $stderr.puts errors.join("\n")
         end
       end

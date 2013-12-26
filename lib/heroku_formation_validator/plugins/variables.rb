@@ -8,15 +8,15 @@ module HerokuFormationValidator
         values.each do |key, value|
           if value.nil?
             if config.has_key?(key)
-              errors << "#{key} is defined"
+              errors << "\"#{key}\" is defined"
             end
           elsif !config.has_key?(key)
-            errors << "#{key} is not defined"
+            errors << "\"#{key}\" is not defined"
           elsif config[key] != value
-            errors << "#{key} doesn't match. expected \"#{value}\" but \"#{config[key]}\""
+            errors << "\"#{key}\" doesn't match. expected \"#{value}\" but \"#{config[key]}\""
           end
         end
-        errors.map{|e| "Variable: #{e}"}
+        errors
       end
     end
   end

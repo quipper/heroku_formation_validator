@@ -26,5 +26,9 @@ module HerokuFormationValidator
     def addons(app_id_or_name)
       self.class.get("/apps/#{app_id_or_name}/addons")
     end
+
+    def logdrains(app_id_or_name)
+      self.class.get("/apps/#{app_id_or_name}/log-drains")
+    end
   end
 end
