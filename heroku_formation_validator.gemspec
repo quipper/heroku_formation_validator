@@ -23,4 +23,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'httparty', "~> 0.12"
   spec.add_dependency 'activesupport', "~> 4"
+  spec.add_dependency 'rainbow'
 end
