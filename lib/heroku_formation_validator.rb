@@ -3,6 +3,7 @@ require "heroku_formation_validator/heroku_api"
 require "heroku_formation_validator/runner"
 require "yaml"
 require "active_support/all"
+require "rainbow"
 
 Dir[File.join(File.dirname(__FILE__), 'heroku_formation_validator', 'plugins', '*.rb')].each do |extension|
   require extension
@@ -13,13 +14,13 @@ module HerokuFormationValidator
     begin
       cnf = YAML::load(File.open(config_file))
     rescue Errno::ENOENT
-      $stderr.puts "File not found: #{config_file}"
+      error "File not found: #{config_file}"
       return false
     end
     heroku_api = HerokuApi.new(cnf["auth"]["email"], cnf["auth"]["token"])
 
     unless heroku_api.ping
-      $stderr.puts "Heroku API error. Heroku credential in config is not correct?"
+      error "Heroku API error. Heroku credential in config is not correct?"
       return false
     end
 
@@ -35,11 +36,15 @@ module HerokuFormationValidator
 
         if errors.length > 0
           success = false
-          $stderr.puts "=== #{group} #{app} ==="
-          $stderr.puts errors.join("\n")
+          error "=== #{group} #{app} ==="
+          error errors.join("\n")
         end
       end
     end
     success
+  end
+
+  def self.error(msg)
+    $stderr.puts msg.color(:red)
   end
 end
